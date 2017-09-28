@@ -24,7 +24,7 @@ class ThingsControllerTest < ActionController::TestCase
                 )
   end
 
-  test 'nested attributes should be underscored' do
+  test 'snakecase key with its nested attributes should all be underscored' do
     post(:create, params: { thing: {
       nestedSnakeCaseAttributes: {
         pleaseUnderscoreMe: 'yes',
@@ -40,6 +40,72 @@ class ThingsControllerTest < ActionController::TestCase
                      'not_me' => 'nope',
                      'norme' => 'never'
                  }}, JSON.parse(@response.body)
+                )
+  end
+
+  test 'underscore key with its nested attributes should all be underscored' do
+    post(:create, params: { thing: {
+      nested_under_score_attributes: {
+        meAsWell: 'yes',
+        alsoMe: 'please',
+        not_me_either: 'nope'
+      }
+    } })
+    assert_response :ok
+    assert_equal({ 'nested_under_score_attributes' => {
+                     'me_as_well' => 'yes',
+                     'also_me' => 'please',
+                     'not_me_either' => 'nope'
+                 }}, JSON.parse(@response.body)
+                )
+  end
+
+  test 'single word key with nested attributes should be underscored' do
+    post(:create, params: { thing: {
+      nested: {
+        whatAboutMe: 'yes',
+        and_me: 'please',
+        hello: 'nope'
+      }
+    } })
+    assert_response :ok
+    assert_equal({ 'nested' => {
+                     'what_about_me' => 'yes',
+                     'and_me' => 'please',
+                     'hello' => 'nope'
+                 }}, JSON.parse(@response.body)
+                )
+  end
+
+  test 'single word key with array of nested attributes should all be underscored' do
+    post(:create, params: { thing: {
+      nested: [
+        {
+          whatAboutMe: 'yes',
+          and_me: 'please',
+          hello: 'nope'
+        },
+        {
+          whatAboutMe: 'really',
+          and_me: 'yeah',
+          hello: 'n/a'
+
+        }
+      ]
+    } })
+    assert_response :ok
+    assert_equal({ 'nested' => [
+                   {
+                     'what_about_me' => 'yes',
+                     'and_me' => 'please',
+                     'hello' => 'nope'
+                   },
+                   {
+                     'what_about_me' => 'really',
+                     'and_me' => 'yeah',
+                     'hello' => 'n/a'
+                   }
+                 ]}, JSON.parse(@response.body)
                 )
   end
 end

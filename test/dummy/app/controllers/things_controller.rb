@@ -33,7 +33,12 @@ class ThingsController < ApplicationController
                      :importantAttribute,
                      :nestedSnakeCaseAttributes,
                      :pleaseUnderscoreMe,
-                     :meToo
+                     :meToo,
+                     :nested_under_score_attributes,
+                     :meAsWell,
+                     :alsoMe,
+                     :nested,
+                     :whatAboutMe
                     )
   end
 end
