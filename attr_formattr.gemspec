@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.name        = "attr_formattr"
   s.version     = AttrFormattr::VERSION
   s.authors     = ["Abraham Sangha"]
-  s.email       = ["abraham.sangha@cognizant.com"]
-  s.homepage    = "http://www.foo.co://github.com/abrahamsangha/attr-formattr"
+  s.email       = ["abraham.sangha@gmail.com"]
+  s.homepage    = "https://github.com/abrahamsangha/attr-formattr"
   s.summary     = "AttrFormattr is a Rails ActionController mixin that provides formatting for attribute params."
   s.description = "AttrFormattr is a Rails ActionController mixin that provides formatting for attribute params. The principal use case is for a client application to maintain the JavaScript idiom of using camelCase while consuming a Rails API endpoint written in idiomatic Ruby with snake_case."
   s.license     = "MIT"
