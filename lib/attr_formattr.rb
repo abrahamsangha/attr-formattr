@@ -1,3 +1,5 @@
+require 'attr_formattr/underscore'
+
 module AttrFormattr
-  # Your code goes here...
+  include Underscore
 end

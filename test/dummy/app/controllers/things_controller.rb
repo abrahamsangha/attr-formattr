@@ -6,10 +6,34 @@ class ThingsController < ApplicationController
   private
 
   def create_params
-    params.require(:thing).permit(:importantAttribute)
+    params.require(:thing).permit(:importantAttribute,
+                                  :less_important_attribute,
+                                  :attribute,
+                                  nestedSnakeCaseAttributes: [
+                                    :pleaseUnderscoreMe,
+                                    :meToo,
+                                    :not_me,
+                                    :norme
+                                  ],
+                                  nested_under_score_attributes: [
+                                    :meAsWell,
+                                    :alsoMe,
+                                    :not_me_either
+                                  ],
+                                  nested: [
+                                    :whatAboutMe,
+                                    :and_me,
+                                    :hello
+                                  ]
+                                 )
   end
 
   def formatted_params(whitelist, *attrs)
-    'goo'
+    underscore_attrs(whitelist,
+                     :importantAttribute,
+                     :nestedSnakeCaseAttributes,
+                     :pleaseUnderscoreMe,
+                     :meToo
+                    )
   end
 end
